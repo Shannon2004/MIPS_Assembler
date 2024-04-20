@@ -1,0 +1,41 @@
+add $t4,$t1,$0 
+addi $t4,$t4,-1
+addi $t7,$0,0 
+beq $t4,$0,skiploop
+outerfor:
+	beq $t7,$t4,done 
+	add $t5,$t2,$0 
+	add $t6,$t3,$0 
+	addi $t8,$0,0 
+	sub $s0,$t4,$t7 
+	innerloop:
+		beq $t8,$s0,innerloopdone 
+		lw $s1,0($t5) 
+		lw $s2,4($t5)
+		slt $t9,$s2,$s1
+		bne $t9,$0,swap
+		return_from_swap:
+		addi $t5,$t5,4 
+		addi $t8,$t8,1 
+		j innerloop	
+	swap:
+		sw $s2,0($t5)
+		sw $s1,4($t5) 
+		j return_from_swap
+	innerloopdone:
+		addi $t7,$t7,1
+		add $s3,$s0,$0
+		sll $s3,$s3,2
+		add $t6,$t6,$s3 
+		lw $s6,0($t5)
+		sw $s6,0($t6)
+		sub $t6,$t6,$s3
+		j outerfor 
+done:	
+	lw $s6,-4($t5)
+	sw $s6,0($t6)
+	j stop
+skiploop:
+	lw $s6,0($t2)
+	sw $s6,0($t3)
+stop:		
