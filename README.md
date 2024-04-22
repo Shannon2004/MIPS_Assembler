@@ -1,8 +1,7 @@
 # MIPS_Assembler
 This repository consists of a asm code which implements bubble sort in MIPS architecture. It also contains an assembler specifically designed to run the asm code.
 
-1) Implementation of Sorting algorithm using MIPS
-(template.asm)
+1) Implementation of Sorting algorithm using MIPS(template.asm)
 
 We implemented the bubble sort algorithm to sort the numbers in increasing order.We
 stored the variables 'n','n-1','i'(control variable for outer for loop) in different
@@ -39,4 +38,4 @@ represented using a string called 'output'. We use the split() function to make 
 file-input simpler. Output for each instruction is calculated based on its type ie
 R,I,J type instructions. We use a for-loop to loop through the template.asm code
 and print the corresponding hexadecimal PC value and the output. In the end
-the PC is incremented by four.
+the PC is incremented by to PC+4.
